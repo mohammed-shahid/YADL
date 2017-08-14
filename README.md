@@ -5,13 +5,13 @@ Repository YAL contains the base Yang-Anderson Lock (YAL) algorithm's implementa
 
 This is a pthread- and MPI- based implementation of a variant of the original YAL for Mutual Exclusion (https://www.cs.unc.edu/~anderson/papers/dc95.pdf).
 
-This algorithm is called Yang-Anderson Doorway Lock (YADL) or YAMCS in the initial proposal (MS Abdulla, "MCS-like Algorithms for Efficient Mutual Exclusion in Cloud and Multi-Core settings", Advances in Cloud Computing, Bangalore, July 2012)
+This algorithm is called Yang-Anderson Doorway Lock (YADL) or YAMCS in the initial proposal (MS Abdulla, "MCS-like Algorithms for Efficient Mutual Exclusion in Cloud and Multi-Core settings", Advances in Cloud Computing, Bangalore, July 2012. Slides provided in repository)
 
-Key step in this algorithm is to make the process which wins contention in the YAL-tree, the creator of a linked list of processes which are contending for various locks (at various levels) in the rest of the YAL-tree.
+The key step in YADL/YAMCS is to make the process which wins contention in the YAL-tree, also the creator of a linked list of processes which are contending for various locks (at various levels) in the rest of the YAL-tree.
 
-This linked-list of processes spinning on a local variable called Freed_YA, each being woken up when predecessor finishes, is like Mellor-Crummey-Scott (MCS) mutual exclusion algorithm.
+This linked-list of processes spinning on a local variable called Freed_YA, each being woken up when their predecessor finishes, is like Mellor-Crummey-Scott (MCS) mutual exclusion algorithm.
 
-However, unlike MCS, there is no need for atomic instructions like Fetch-and-Store or Compare-and-Swap.
+However, unlike MCS, complex atomic instructions like Fetch-and-Store or Compare-and-Swap are avoided.
 
 Analysis shows that for high contention, i.e. when all N processes are contending at all time, the remote-accesses required per process is O(1).
 
