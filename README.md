@@ -13,7 +13,7 @@ This linked-list of processes spinning on a local variable called Freed_YA, each
 
 However, unlike MCS, complex atomic instructions like Fetch-and-Store or Compare-and-Swap are avoided.
 
-Analysis shows that for high contention, i.e. when all N processes are contending at all time, the remote-accesses required per process is O(1).
+Analysis shows that for high contention, i.e. when all N processes are contending at all time, the remote-accesses required per process is O(1). Three JPEG plots are included in the files above indicating how the average Remote Accesses (RAs) for YAL increase as N increases, while RAs for YADL remain nearly constant.
 
 Preparation of cluster and compilation are as in the YAL repository.
 
